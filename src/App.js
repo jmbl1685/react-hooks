@@ -6,16 +6,24 @@ import ComponentTwo from './components/componentTwo/ComponentTwo';
 
 export default function App() {
 
+  let defaultData = {
+    color: "#FFFFFF",
+    name: "Juan Manuel",
+    from: "",
+  };
+
   const [state, dispatch] = useReducer((state, action) => {
 
     switch (action.type) {
-      case "CHANGE-NAME":
-        return { ...state, name: action.name };
-      case "CHANGE-COLOR":
-        return { ...state, color: action.color };
-    };
+      case "CHANGE_NAME":
+        return { ...state, name: action.name, from: action.from };
+      case "CHANGE_COLOR":
+        return { ...state, color: action.color, from: action.from };
+      default:
+        return {};
+    }
 
-  }, { color: "#FFFFFF", name: "Juan Manuel" });
+  }, defaultData);
 
   return (
     <AppContext.Provider value={{ state, dispatch }}>
